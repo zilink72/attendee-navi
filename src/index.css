@@ -2,39 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Event Concierge Platform Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    /* Premium Navy Primary */
+    --primary: 222 47% 11%;
     --primary-foreground: 210 40% 98%;
+    --primary-light: 222 47% 20%;
+    --primary-lighter: 222 30% 30%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Elegant Gold Accent */
+    --accent: 43 74% 66%;
+    --accent-foreground: 222 47% 11%;
+    --accent-light: 43 74% 76%;
+    --accent-dark: 43 74% 56%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Sophisticated Secondary */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --secondary-dark: 210 20% 85%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 84% 4.9%;
+
+    /* Event-specific colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 11%;
+    --info: 221 83% 53%;
+    --info-foreground: 0 0% 100%;
+
+    /* Activity category colors */
+    --category-vip: 281 83% 60%;
+    --category-transport: 217 91% 60%;
+    --category-dining: 142 76% 36%;
+    --category-event: 43 74% 66%;
+    --category-accommodation: 222 47% 20%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-card: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-light)));
+
+    /* Shadows */
+    --shadow-soft: 0 2px 8px hsl(var(--primary) / 0.08);
+    --shadow-medium: 0 4px 16px hsl(var(--primary) / 0.12);
+    --shadow-elevated: 0 8px 32px hsl(var(--primary) / 0.16);
+
+    /* Spacing & Sizing */
+    --nav-height: 4rem;
+    --content-max-width: 28rem;
+    --radius: 0.75rem;
 
     --radius: 0.5rem;
 
@@ -100,6 +137,88 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Mobile-first container */
+  .container-mobile {
+    @apply mx-auto max-w-md px-4;
+  }
+
+  /* Hero gradient background */
+  .bg-hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  /* Card gradient background */
+  .bg-card-gradient {
+    background: var(--gradient-card);
+  }
+
+  /* Accent gradient background */
+  .bg-accent-gradient {
+    background: var(--gradient-accent);
+  }
+
+  /* Custom shadows */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Activity category badges */
+  .badge-vip {
+    @apply bg-purple-100 text-purple-800 border-purple-200;
+    background-color: hsl(var(--category-vip) / 0.1);
+    color: hsl(var(--category-vip));
+    border-color: hsl(var(--category-vip) / 0.2);
+  }
+
+  .badge-transport {
+    @apply bg-blue-100 text-blue-800 border-blue-200;
+    background-color: hsl(var(--category-transport) / 0.1);
+    color: hsl(var(--category-transport));
+    border-color: hsl(var(--category-transport) / 0.2);
+  }
+
+  .badge-dining {
+    @apply bg-green-100 text-green-800 border-green-200;
+    background-color: hsl(var(--category-dining) / 0.1);
+    color: hsl(var(--category-dining));
+    border-color: hsl(var(--category-dining) / 0.2);
+  }
+
+  .badge-event {
+    @apply bg-yellow-100 text-yellow-800 border-yellow-200;
+    background-color: hsl(var(--category-event) / 0.1);
+    color: hsl(var(--category-event));
+    border-color: hsl(var(--category-event) / 0.2);
+  }
+
+  .badge-accommodation {
+    @apply bg-gray-100 text-gray-800 border-gray-200;
+    background-color: hsl(var(--category-accommodation) / 0.1);
+    color: hsl(var(--category-accommodation));
+    border-color: hsl(var(--category-accommodation) / 0.2);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Touch-friendly interactive elements */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
   }
 }
