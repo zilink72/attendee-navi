@@ -9,6 +9,8 @@ import RegisterConfirmation from "./pages/RegisterConfirmation";
 import Login from "./pages/Login";
 import MagicLinkSent from "./pages/MagicLinkSent";
 import Itinerary from "./pages/Itinerary";
+import ActivityDetail from "./pages/ActivityDetail";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/login/magic-link-sent" element={<MagicLinkSent />} />
           <Route path="/itinerary" element={<Itinerary />} />
+          <Route path="/activity/:id" element={<ActivityDetail />} />
+          <Route path="/profile" element={<Profile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
